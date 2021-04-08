@@ -1,5 +1,5 @@
 import os
-from tkinter import Tk, BooleanVar, Menu, DISABLED
+from tkinter import Tk, BooleanVar, Menu, Canvas, DISABLED
 from tkinter.ttk import Style, Notebook, Frame, Label
 from functools import partial
 from yaml import load, dump
@@ -172,13 +172,19 @@ menubar.add_cascade(label="Help", menu=helpmenu)
 # Add a couple of tabbed pages.
 tabControl = Notebook(root)
 tab1 = Frame(tabControl)
-tab2 = Frame(tabControl)
-tabControl.add(tab1, text='Tab 1')
-tabControl.add(tab2, text='Tab 2')
-tabControl.pack(expand=1, fill="both")
+# tab2 = Frame(tabControl)
 
 Label(tab1, text="Welcome to GeeksForGeeks").grid(column=0, row=0, padx=30, pady=30)
-Label(tab2, text="Lets dive into the world of computers").grid(column=0, row=0, padx=30, pady=30)
+# Label(tab2, text="Lets dive into the world of computers").grid(column=0, row=0, padx=30, pady=30)
+canvas = Canvas(tabControl)
+canvas.create_line(15, 25, 200, 25)
+canvas.create_line(300, 35, 300, 200, dash=(4, 2))
+canvas.create_line(55, 85, 155, 85, 105, 180, 55, 85)
+
+tabControl.add(tab1, text='Tab 1')
+#tabControl.add(tab2, text='Tab 2')
+tabControl.add(canvas, text='Tab 2')
+tabControl.pack(expand=1, fill="both")
 
 root.config(menu=menubar)
 root.mainloop()
